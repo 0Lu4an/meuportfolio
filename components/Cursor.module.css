@@ -1,0 +1,49 @@
+.dot {
+  position: fixed;
+  width: 5px;
+  height: 5px;
+  background: var(--accent);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  transition: width 0.25s, height 0.25s, opacity 0.25s;
+}
+
+.ring {
+  position: fixed;
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(232, 255, 71, 0.3);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s;
+}
+
+.text {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9997;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.5rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  transition: opacity 0.25s;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .dot,
+  .ring,
+  .text {
+    display: none;
+  }
+}

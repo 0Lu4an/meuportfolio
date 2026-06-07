@@ -1,0 +1,145 @@
+'use client'
+
+import { useEffect, useRef } from 'react'
+import styles from './Sobre.module.css'
+
+const skills = [
+  'React','Python','PostgreSQL','JavaScript','Tailwind',
+  'Node.js','APIs REST','Git','Deploy','Figma','Estratégia','Go-to-Market',
+]
+
+const feats = [
+  {
+    num: '01',
+    title: 'Formação',
+    desc: 'Ciência da Computação — UNICAP. 3º período em andamento. Arquitetura, banco de dados, redes e segurança no currículo.',
+  },
+  {
+    num: '02',
+    title: 'Secco · CSO & Cofundador',
+    desc: 'Responsável pela estratégia de produto, go-to-market e relacionamento com clientes desde a fundação. Aprendi que código sem estratégia não vai a lugar nenhum.',
+  },
+  {
+    num: '03',
+    title: 'Disponível agora',
+    desc: 'Aberto a estágios, freelas e parcerias. Respondo sempre — geralmente no mesmo dia. Pode chegar.',
+  },
+]
+
+const counters = [
+  { value: 3,   suffix: '+ anos', label: 'Experiência com código' },
+  { value: 10,  suffix: '+',      label: 'Projetos entregues' },
+  { value: 100, suffix: '%',      label: 'Comprometimento' },
+]
+
+function animateCount(el, target, suffix = '') {
+  const duration = 1400
+  const start = performance.now()
+  const update = (now) => {
+    const p = Math.min((now - start) / duration, 1)
+    const eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p)
+    el.textContent = Math.floor(eased * target) + suffix
+    if (p < 1) requestAnimationFrame(update)
+    else el.textContent = target + suffix
+  }
+  requestAnimationFrame(update)
+}
+
+export default function Sobre() {
+  const counterRefs = useRef([])
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return
+          const el = e.target
+          const idx = Number(el.dataset.idx)
+          const c = counters[idx]
+          animateCount(el, c.value, c.suffix)
+          observer.unobserve(el)
+        })
+      },
+      { threshold: 0.4 }
+    )
+    counterRefs.current.forEach(el => el && observer.observe(el))
+    return () => observer.disconnect()
+  }, [])
+
+  // Reveal observer
+  useEffect(() => {
+    const els = document.querySelectorAll('.r')
+    const ro = new IntersectionObserver(
+      entries => entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('v'); ro.unobserve(e.target) }
+      }),
+      { threshold: 0.07 }
+    )
+    els.forEach(el => ro.observe(el))
+    return () => ro.disconnect()
+  }, [])
+
+  return (
+    <section className="sec-full" id="sobre">
+      <div className="sec">
+        <p className="s-label r">01 — Sobre</p>
+        <h2 className="r d1">
+          DEV QUE<br />TAMBÉM<br /><em>FUNDA.</em>
+        </h2>
+
+        <div className={styles.grid}>
+          <div className={`${styles.body} r d1`}>
+            <p>
+              Tenho 20 anos, estudo Ciência da Computação na <strong>UNICAP</strong> e sou
+              cofundador e CSO da <em>Secco</em> — startup que ajudei a tirar do papel enquanto
+              ainda cursava o 2º período.
+            </p>
+            <p>
+              Isso me deu algo que a maioria dos devs não tem: sei escrever código{' '}
+              <em>e</em> entendo o que esse código precisa fazer no mundo real. Conheço
+              cliente, conheço negócio, conheço deadline de verdade.
+            </p>
+            <p>
+              Trabalho com <strong>React, Python e PostgreSQL</strong> no dia a dia — mas o
+              que realmente entrego é clareza: interfaces que fazem sentido, sistemas que não
+              travam, soluções que o cliente consegue usar.
+            </p>
+            <div className={styles.pills}>
+              {skills.map(s => (
+                <span className={`${styles.pill} pill`} key={s}>{s}</span>
+              ))}
+            </div>
+          </div>
+
+          <div className={`${styles.feats} r d2`}>
+            {feats.map(f => (
+              <div className={`${styles.feat} sobre-feat`} key={f.num}>
+                <div className={styles.featNum}>{f.num}</div>
+                <div>
+                  <div className={styles.featTitle}>{f.title}</div>
+                  <p className={styles.featDesc}>{f.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Animated stats */}
+        <div className={`${styles.statsRow} r d3`}>
+          {counters.map((c, i) => (
+            <div className={styles.statItem} key={i}>
+              <div
+                className={styles.statN}
+                ref={el => (counterRefs.current[i] = el)}
+                data-idx={i}
+              >
+                0{c.suffix}
+              </div>
+              <div className={styles.statL}>{c.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}

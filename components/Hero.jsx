@@ -4,10 +4,10 @@ import { useEffect, useRef } from 'react'
 import styles from './Hero.module.css'
 
 const stats = [
-  { value: null, display: '3+', label: 'Anos codando' },
-  { value: null, display: '2+', label: 'Empresas fundadas' },
+  { value: null, display: '2+', label: 'Anos de Estudo' },
+  { value: null, display: '1', label: 'Empresa fundada' },
   { value: 100,  suffix: '%',   label: 'Entregue no prazo' },
-  { value: null, display: '∞',  label: 'Café consumido' },
+  { value: null, display: 'OTW', label: 'Open to work' },
 ]
 
 function animateCount(el, target, suffix = '') {
@@ -89,18 +89,8 @@ export default function Hero() {
       {/* ── RIGHT COLUMN ── */}
       <div className={styles.right}>
         <div className={styles.photoWrap}>
-          {/* Foto — troque o placeholder pelo <img> quando tiver a foto:
-              <img src="/foto.jpg" alt="Luan Felipe" className={styles.photo} />
-          */}
           <div className={styles.photoFrame} data-cursor="Foto · Luan">
-            <div className={styles.photoPh}>
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round">
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <circle cx="8.5" cy="8.5" r="1.5" />
-                <polyline points="21 15 16 10 5 21" />
-              </svg>
-              <span>Adicione sua foto</span>
-            </div>
+            <img src="/FotoMinha1.png" alt="Luan Felipe" className={styles.photo} />
             <div className={styles.photoLabel}>
               <span>Luan Felipe · Recife</span>
               <span className={styles.photoBadge}>Disponível</span>

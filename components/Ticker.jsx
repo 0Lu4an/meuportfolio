@@ -2,7 +2,7 @@ import styles from './Ticker.module.css'
 
 const items = [
   'React', 'Python', 'PostgreSQL', 'Tailwind CSS', 'APIs REST',
-  'JavaScript', 'Node.js', 'Git & GitHub', 'Estratégia Digital',
+  'JavaScript', 'Node.js', 'Next.js', 'Git & GitHub', 'Estratégia Digital',
   'Deploy & DevOps', 'Go-to-Market', 'UX / UI',
 ]
 

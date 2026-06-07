@@ -5,14 +5,14 @@ import styles from './Sobre.module.css'
 
 const skills = [
   'React','Python','PostgreSQL','JavaScript','Tailwind',
-  'Node.js','APIs REST','Git','Deploy','Figma','Estratégia','Go-to-Market',
+  'Node.js','APIs REST','Git','Deploy','Figma','Estratégia','Go-to-Market', 'Next.js',
 ]
 
 const feats = [
   {
     num: '01',
-    title: 'Formação',
-    desc: 'Ciência da Computação — UNICAP. 3º período em andamento. Arquitetura, banco de dados, redes e segurança no currículo.',
+      title: 'Formação',
+      desc: 'Ciência da Computação - UNIFAVIP. 3º período em andamento. Arquitetura, banco de dados, redes e segurança no currículo.',
   },
   {
     num: '02',
@@ -22,13 +22,13 @@ const feats = [
   {
     num: '03',
     title: 'Disponível agora',
-    desc: 'Aberto a estágios, freelas e parcerias. Respondo sempre — geralmente no mesmo dia. Pode chegar.',
+    desc: 'Aberto a estágios, freelas e parcerias. Respondo no mesmo dia. Pode chegar.',
   },
-]
+] 
 
 const counters = [
-  { value: 3,   suffix: '+ anos', label: 'Experiência com código' },
-  { value: 10,  suffix: '+',      label: 'Projetos entregues' },
+  { value: 1,   suffix: '+ ano', label: 'Experiência com código' },
+  { value: 10,  suffix: '+',      label: 'Tecnologias dominadas' },
   { value: 100, suffix: '%',      label: 'Comprometimento' },
 ]
 
@@ -90,7 +90,7 @@ export default function Sobre() {
         <div className={styles.grid}>
           <div className={`${styles.body} r d1`}>
             <p>
-              Tenho 20 anos, estudo Ciência da Computação na <strong>UNICAP</strong> e sou
+              Tenho 20 anos, estudo Ciência da Computação na <strong>UNIFAVIP</strong> e sou
               cofundador e CSO da <em>Secco</em> — startup que ajudei a tirar do papel enquanto
               ainda cursava o 2º período.
             </p>
@@ -100,7 +100,7 @@ export default function Sobre() {
               cliente, conheço negócio, conheço deadline de verdade.
             </p>
             <p>
-              Trabalho com <strong>React, Python e PostgreSQL</strong> no dia a dia — mas o
+              Trabalho com <strong>Next.js, React, Python e PostgreSQL</strong> no dia a dia — mas o
               que realmente entrego é clareza: interfaces que fazem sentido, sistemas que não
               travam, soluções que o cliente consegue usar.
             </p>

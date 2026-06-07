@@ -1,3 +1,8 @@
+@keyframes mq {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
 .ticker {
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);

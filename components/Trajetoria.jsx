@@ -2,21 +2,21 @@ import styles from './Trajetoria.module.css'
 
 const items = [
   {
-    period: '2023 — 2028',
-    inst: 'UNICAP — Ciência da Computação',
+    period: '2025 — 2028',
+    inst: 'UNIFAVIP — Ciência da Computação',
     course: 'Bacharelado · 3º Período em andamento',
     detail: 'Arquitetura · Banco de Dados · Redes · Segurança',
   },
   {
-    period: '2024 — hoje',
+    period: '2025 — hoje',
     inst: 'Secco — Cofundador & CSO',
     course: 'Experiência prática em gestão, estratégia e produto',
     detail: 'Go-to-Market · Produto · Operações · Clientes',
   },
   {
-    period: '2022 — hoje',
-    inst: 'Autodidata — Dev Full Stack',
-    course: 'React, Python, PostgreSQL, Node.js, APIs, Deploy',
+    period: '2025 — hoje',
+    inst: 'Dev Full Stack',
+    course: 'React, Python, PostgreSQL, Node.js, Next.js, APIs, Deploy',
     detail: 'Projetos reais · Cursos · Documentação · Comunidade',
   },
 ]

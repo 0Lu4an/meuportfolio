@@ -23,9 +23,7 @@
   --border3: rgba(240, 236, 228, 0.32);
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   font-family: 'IBM Plex Sans', sans-serif;
@@ -36,11 +34,9 @@ body {
   line-height: 1.6;
 }
 
-/* ── PROGRESS BAR ── */
 #prog {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--accent), transparent);
   z-index: 600;
@@ -49,29 +45,11 @@ body {
   pointer-events: none;
 }
 
-/* ── TICKER ── */
 @keyframes mq {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
 
-/* ── REVEAL ── */
-.r {
-  opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 0.75s ease, transform 0.75s ease;
-}
-.r.v {
-  opacity: 1 !important;
-  transform: none !important;
-}
-.d1 { transition-delay: 0.07s; }
-.d2 { transition-delay: 0.14s; }
-.d3 { transition-delay: 0.21s; }
-.d4 { transition-delay: 0.28s; }
-.d5 { transition-delay: 0.35s; }
-
-/* ── ANIMATIONS ── */
 @keyframes fu {
   from { opacity: 0; transform: translateY(12px); }
   to   { opacity: 1; transform: none; }
@@ -85,7 +63,14 @@ body {
   50%       { opacity: 1; }
 }
 
-/* ── GLOBAL BUTTON ── */
+/* REVEAL — visível por padrão, animação é bônus */
+.r { opacity: 1; transform: none; }
+.d1 { transition-delay: 0.07s; }
+.d2 { transition-delay: 0.14s; }
+.d3 { transition-delay: 0.21s; }
+.d4 { transition-delay: 0.28s; }
+.d5 { transition-delay: 0.35s; }
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -101,11 +86,7 @@ body {
   position: relative;
   overflow: hidden;
 }
-.btn-accent {
-  background: var(--accent);
-  color: #080808;
-  font-weight: 500;
-}
+.btn-accent { background: var(--accent); color: #080808; font-weight: 500; }
 .btn-accent::before {
   content: '';
   position: absolute;
@@ -115,32 +96,14 @@ body {
   transform-origin: left;
   transition: transform 0.35s;
 }
-.btn-accent:hover::before {
-  transform: scaleX(1);
-}
-.btn-accent span {
-  position: relative;
-  z-index: 1;
-}
-.btn-ghost {
-  border: 1px solid var(--border2);
-  color: var(--ink2);
-}
-.btn-ghost:hover {
-  border-color: var(--border3);
-  background: var(--border);
-  color: var(--ink);
-}
+.btn-accent:hover::before { transform: scaleX(1); }
+.btn-accent span { position: relative; z-index: 1; }
+.btn-ghost { border: 1px solid var(--border2); color: var(--ink2); }
+.btn-ghost:hover { border-color: var(--border3); background: var(--border); color: var(--ink); }
 
-/* ── SECTION SHARED ── */
-.sec {
-  padding: 8rem 4vw;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.sec-full {
-  border-bottom: 1px solid var(--border);
-}
+.sec { padding: 8rem 4vw; max-width: 1200px; margin: 0 auto; }
+.sec-full { border-bottom: 1px solid var(--border); }
+
 .s-label {
   display: flex;
   align-items: center;
@@ -152,12 +115,8 @@ body {
   color: var(--accent);
   margin-bottom: 1rem;
 }
-.s-label::before {
-  content: '';
-  width: 1.4rem;
-  height: 1px;
-  background: var(--accent);
-}
+.s-label::before { content: ''; width: 1.4rem; height: 1px; background: var(--accent); }
+
 h2 {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(3rem, 7vw, 5.8rem);
@@ -165,45 +124,9 @@ h2 {
   letter-spacing: 0.03em;
   margin-bottom: 4rem;
 }
-h2 em {
-  font-style: normal;
-  color: var(--accent);
-}
+h2 em { font-style: normal; color: var(--accent); }
 
-/* ── MOBILE ── */
 @media (max-width: 768px) {
-  body {
-    cursor: auto;
-  }
-  .sec {
-    padding: 5rem 5vw;
-  }
-}
-
-/* FALLBACK — garante visibilidade se animação não disparar */
-@media (prefers-reduced-motion: reduce) {
-  .r { opacity: 1 !important; transform: none !important; }
-}
-
-/* Forçar fontes fallback enquanto Google Fonts carrega */
-.h-name span,
-.h-tag,
-.h-sub,
-.h-desc,
-.h-bottom {
-  animation-fill-mode: forwards !important;
-}
-
-/* Garante que animações completem */
-[class*="hero"] span,
-.h-name span {
-  animation-fill-mode: forwards;
-}
-
-/* Dev fallback — força visibilidade após 2s */
-@keyframes fallback-show {
-  to { opacity: 1; transform: none; }
-}
-.r {
-  animation: fallback-show 0s 2s forwards;
+  body { cursor: auto; }
+  .sec { padding: 5rem 5vw; }
 }

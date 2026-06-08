@@ -112,7 +112,7 @@ body {
 .btn-ghost:hover { border-color: var(--border3); background: var(--border); color: var(--ink); }
  
 /* ── SEÇÕES ── */
-.sec { padding: 8rem 4vw; max-width: 1200px; margin: 0 auto; }
+.sec { padding: 6rem 4vw; max-width: 1200px; margin: 0 auto; }
 .sec-full { border-bottom: 1px solid var(--border); }
  
 .s-label {

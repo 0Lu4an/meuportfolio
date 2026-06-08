@@ -40,6 +40,15 @@ export default function Cursor() {
     }
     requestAnimationFrame(tick)
 
+    // Progress bar
+    const onScroll = () => {
+      const prog = document.getElementById('prog')
+      if (prog) {
+        prog.style.width = (scrollY / (document.body.scrollHeight - innerHeight) * 100) + '%'
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+
     // Hover effect on interactive elements
     const hoverEls = document.querySelectorAll(
       'a, button, .pill, .tag, .diff-item, .sobre-feat, .proc-item, .h-stat'
@@ -66,6 +75,7 @@ export default function Cursor() {
 
     return () => {
       document.removeEventListener('mousemove', onMove)
+      window.removeEventListener('scroll', onScroll)
       hoverEls.forEach(el => {
         el.removeEventListener('mouseenter', addH)
         el.removeEventListener('mouseleave', removeH)

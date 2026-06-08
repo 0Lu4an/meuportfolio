@@ -9,10 +9,12 @@ import Processo from '../components/Processo'
 import Trajetoria from '../components/Trajetoria'
 import Contato from '../components/Contato'
 import Footer from '../components/Footer'
+import RevealObserver from '../components/RevealObserver'
 
 export default function Home() {
   return (
     <>
+      <RevealObserver />
       <Cursor />
       <Nav />
       <main>

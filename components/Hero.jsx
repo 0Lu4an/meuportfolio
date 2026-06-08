@@ -4,8 +4,8 @@ import { useEffect, useRef } from 'react'
 import styles from './Hero.module.css'
 
 const stats = [
-  { value: null, display: '2+', label: 'Anos de Estudo' },
-  { value: null, display: '1', label: 'Empresa fundada' },
+  { value: 2, suffix: '+', label: 'Anos de Estudo' },
+  { value: 1, suffix: '', label: 'Empresa fundada' },
   { value: 100,  suffix: '%',   label: 'Entregue no prazo' },
   { value: null, display: 'OTW', label: 'Open to work' },
 ]
@@ -29,21 +29,24 @@ export default function Hero() {
   const statRefs = useRef([])
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (!e.isIntersecting) return
-          const el = e.target
-          const idx = Number(el.dataset.idx)
-          const stat = stats[idx]
-          if (stat.value !== null) animateCount(el, stat.value, stat.suffix)
-          observer.unobserve(el)
-        })
-      },
-      { threshold: 0.4 }
-    )
-    statRefs.current.forEach((el) => el && observer.observe(el))
-    return () => observer.disconnect()
+    const timer = setTimeout(() => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (!e.isIntersecting) return
+            const el = e.target
+            const idx = Number(el.dataset.idx)
+            const stat = stats[idx]
+            if (stat.value !== null) animateCount(el, stat.value, stat.suffix)
+            observer.unobserve(el)
+          })
+        },
+        { threshold: 0.1 }
+      )
+      statRefs.current.forEach((el) => el && observer.observe(el))
+      return () => observer.disconnect()
+    }, 800)
+    return () => clearTimeout(timer)
   }, [])
 
   // Scroll to section helper

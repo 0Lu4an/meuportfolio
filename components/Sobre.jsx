@@ -49,22 +49,6 @@ export default function Sobre() {
   const counterRefs = useRef([])
   const sectionRef  = useRef(null)
  
-  // Fade-in das seções
-  useEffect(() => {
-    const els = document.querySelectorAll('.r')
-    const ro = new IntersectionObserver(
-      entries => entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('v')
-          ro.unobserve(e.target)
-        }
-      }),
-      { threshold: 0.07 }
-    )
-    els.forEach(el => ro.observe(el))
-    return () => ro.disconnect()
-  }, [])
- 
   // Contadores animados
   useEffect(() => {
     const observer = new IntersectionObserver(

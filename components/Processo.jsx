@@ -4,7 +4,7 @@ const steps = [
   { num: '01', title: 'Entender', desc: 'Antes de escrever código, entendo o problema real. Quem usa, qual a dor, o que define sucesso.' },
   { num: '02', title: 'Planejar', desc: 'Estruturo escopo, prazo e riscos antes de começar. Sem surpresas no meio do projeto.' },
   { num: '03', title: 'Construir', desc: 'Código limpo, componentes reutilizáveis, performance desde o início. Entrego rápido sem entregar errado.' },
-  { num: '04', title: 'Iterar',   desc: 'Produto lançado não é produto pronto. Acompanho, meço e melhoro com você depois do deploy.' },
+  { num: '04', title: 'Melhorar',   desc: 'Produto lançado não é produto pronto. Acompanho, meço e melhoro com você depois do deploy.' },
 ]
 
 export default function Processo() {

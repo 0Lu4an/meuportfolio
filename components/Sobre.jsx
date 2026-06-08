@@ -1,18 +1,18 @@
 'use client'
-
+ 
 import { useEffect, useRef } from 'react'
 import styles from './Sobre.module.css'
-
+ 
 const skills = [
   'React','Python','PostgreSQL','JavaScript','Tailwind',
-  'Node.js','APIs REST','Git','Deploy','Figma','Estratégia','Go-to-Market', 'Next.js',
+  'Node.js','APIs REST','Git','Deploy','Figma','Estratégia','Go-to-Market','Next.js',
 ]
-
+ 
 const feats = [
   {
     num: '01',
-      title: 'Formação',
-      desc: 'Ciência da Computação - UNIFAVIP. 3º período em andamento. Arquitetura, banco de dados, redes e segurança no currículo.',
+    title: 'Formação',
+    desc: 'Ciência da Computação - UNIFAVIP. 3º período em andamento. Arquitetura, banco de dados, redes e segurança no currículo.',
   },
   {
     num: '02',
@@ -24,16 +24,16 @@ const feats = [
     title: 'Disponível agora',
     desc: 'Aberto a estágios, freelas e parcerias. Respondo no mesmo dia. Pode chegar.',
   },
-] 
-
-const counters = [
-  { value: 1,   suffix: '+ ano', label: 'Experiência com código' },
-  { value: 10,  suffix: '+',      label: 'Tecnologias dominadas' },
-  { value: 100, suffix: '%',      label: 'Comprometimento' },
 ]
-
+ 
+const counters = [
+  { value: 2,   suffix: '+ ano', label: 'Experiência com código' },
+  { value: 10,  suffix: '+',     label: 'Tecnologias dominadas' },
+  { value: 100, suffix: '%',     label: 'Comprometimento' },
+]
+ 
 function animateCount(el, target, suffix = '') {
-  const duration = 1400
+  const duration = 1600
   const start = performance.now()
   const update = (now) => {
     const p = Math.min((now - start) / duration, 1)
@@ -44,10 +44,28 @@ function animateCount(el, target, suffix = '') {
   }
   requestAnimationFrame(update)
 }
-
+ 
 export default function Sobre() {
   const counterRefs = useRef([])
-
+  const sectionRef  = useRef(null)
+ 
+  // Fade-in das seções
+  useEffect(() => {
+    const els = document.querySelectorAll('.r')
+    const ro = new IntersectionObserver(
+      entries => entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('v')
+          ro.unobserve(e.target)
+        }
+      }),
+      { threshold: 0.07 }
+    )
+    els.forEach(el => ro.observe(el))
+    return () => ro.disconnect()
+  }, [])
+ 
+  // Contadores animados
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -55,38 +73,27 @@ export default function Sobre() {
           if (!e.isIntersecting) return
           const el = e.target
           const idx = Number(el.dataset.idx)
-          const c = counters[idx]
-          animateCount(el, c.value, c.suffix)
+          animateCount(el, counters[idx].value, counters[idx].suffix)
           observer.unobserve(el)
         })
       },
-      { threshold: 0.4 }
+      { threshold: 0.5, rootMargin: '0px 0px -50px 0px' }
     )
-    counterRefs.current.forEach(el => el && observer.observe(el))
-    return () => observer.disconnect()
+    // pequeno delay para garantir que o DOM montou
+    const timer = setTimeout(() => {
+      counterRefs.current.forEach(el => el && observer.observe(el))
+    }, 300)
+    return () => { clearTimeout(timer); observer.disconnect() }
   }, [])
-
-  // Reveal observer
-  useEffect(() => {
-    const els = document.querySelectorAll('.r')
-    const ro = new IntersectionObserver(
-      entries => entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('v'); ro.unobserve(e.target) }
-      }),
-      { threshold: 0.07 }
-    )
-    els.forEach(el => ro.observe(el))
-    return () => ro.disconnect()
-  }, [])
-
+ 
   return (
-    <section className="sec-full" id="sobre">
+    <section className="sec-full" id="sobre" ref={sectionRef}>
       <div className="sec">
         <p className="s-label r">01 — Sobre</p>
         <h2 className="r d1">
           DEV QUE<br />TAMBÉM<br /><em>FUNDA.</em>
         </h2>
-
+ 
         <div className={styles.grid}>
           <div className={`${styles.body} r d1`}>
             <p>
@@ -110,7 +117,7 @@ export default function Sobre() {
               ))}
             </div>
           </div>
-
+ 
           <div className={`${styles.feats} r d2`}>
             {feats.map(f => (
               <div className={`${styles.feat} sobre-feat`} key={f.num}>
@@ -123,8 +130,8 @@ export default function Sobre() {
             ))}
           </div>
         </div>
-
-        {/* Animated stats */}
+ 
+        {/* Stats com counter animado */}
         <div className={`${styles.statsRow} r d3`}>
           {counters.map((c, i) => (
             <div className={styles.statItem} key={i}>
@@ -143,3 +150,4 @@ export default function Sobre() {
     </section>
   )
 }
+ 

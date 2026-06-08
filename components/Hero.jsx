@@ -11,7 +11,9 @@ const stats = [
 ]
 
 function animateCount(el, target, suffix = '') {
-  const duration = 1400
+  // reseta pra 0 antes de animar
+  el.textContent = '0' + suffix
+  const duration = 1800
   const start = performance.now()
   const update = (now) => {
     const p = Math.min((now - start) / duration, 1)
@@ -20,7 +22,7 @@ function animateCount(el, target, suffix = '') {
     if (p < 1) requestAnimationFrame(update)
     else el.textContent = target + suffix
   }
-  requestAnimationFrame(update)
+  setTimeout(() => requestAnimationFrame(update), 400)
 }
 
 export default function Hero() {
@@ -106,7 +108,7 @@ export default function Hero() {
                   ref={el => (statRefs.current[i] = el)}
                   data-idx={i}
                 >
-                  {s.display ?? '0' + (s.suffix ?? '')}
+                  {s.display ?? '0'}
                 </div>
                 <div className={styles.statL}>{s.label}</div>
               </div>

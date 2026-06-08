@@ -5,7 +5,7 @@
   margin: 0;
   padding: 0;
 }
-
+ 
 :root {
   --bg: #080808;
   --bg1: #0f0f0f;
@@ -22,9 +22,9 @@
   --border2: rgba(240, 236, 228, 0.16);
   --border3: rgba(240, 236, 228, 0.32);
 }
-
+ 
 html { scroll-behavior: smooth; }
-
+ 
 body {
   font-family: 'IBM Plex Sans', sans-serif;
   background: var(--bg);
@@ -33,7 +33,7 @@ body {
   cursor: none;
   line-height: 1.6;
 }
-
+ 
 #prog {
   position: fixed;
   top: 0; left: 0;
@@ -44,14 +44,10 @@ body {
   transition: width 0.06s linear;
   pointer-events: none;
 }
-
-@keyframes mq {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-
+ 
+/* ── KEYFRAMES GLOBAIS ── */
 @keyframes fu {
-  from { opacity: 0; transform: translateY(12px); }
+  from { opacity: 0; transform: translateY(14px); }
   to   { opacity: 1; transform: none; }
 }
 @keyframes su {
@@ -62,15 +58,29 @@ body {
   0%, 100% { opacity: 0.35; }
   50%       { opacity: 1; }
 }
-
-/* REVEAL — visível por padrão, animação é bônus */
-.r { opacity: 1; transform: none; }
-.d1 { transition-delay: 0.07s; }
-.d2 { transition-delay: 0.14s; }
-.d3 { transition-delay: 0.21s; }
-.d4 { transition-delay: 0.28s; }
-.d5 { transition-delay: 0.35s; }
-
+@keyframes mq {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+ 
+/* ── FADE-IN AO SCROLLAR ── */
+.r {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.r.v {
+  opacity: 1;
+  transform: none;
+}
+.d1 { transition-delay: 0.08s; }
+.d2 { transition-delay: 0.16s; }
+.d3 { transition-delay: 0.24s; }
+.d4 { transition-delay: 0.32s; }
+.d5 { transition-delay: 0.40s; }
+ 
+/* ── BOTÕES ── */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -100,10 +110,11 @@ body {
 .btn-accent span { position: relative; z-index: 1; }
 .btn-ghost { border: 1px solid var(--border2); color: var(--ink2); }
 .btn-ghost:hover { border-color: var(--border3); background: var(--border); color: var(--ink); }
-
+ 
+/* ── SEÇÕES ── */
 .sec { padding: 8rem 4vw; max-width: 1200px; margin: 0 auto; }
 .sec-full { border-bottom: 1px solid var(--border); }
-
+ 
 .s-label {
   display: flex;
   align-items: center;
@@ -116,7 +127,7 @@ body {
   margin-bottom: 1rem;
 }
 .s-label::before { content: ''; width: 1.4rem; height: 1px; background: var(--accent); }
-
+ 
 h2 {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(3rem, 7vw, 5.8rem);
@@ -125,7 +136,8 @@ h2 {
   margin-bottom: 4rem;
 }
 h2 em { font-style: normal; color: var(--accent); }
-
+ 
+/* ── MOBILE ── */
 @media (max-width: 768px) {
   body { cursor: auto; }
   .sec { padding: 5rem 5vw; }

@@ -1,6 +1,9 @@
 import './globals.css'
 
 export const metadata = {
+  icons: {
+  icon: '/favicon.ico',
+  },
   title: 'Luan Felipe — Dev Full Stack & Cofundador',
   description:
     'Luan Felipe — Desenvolvedor Full Stack e CSO da Secco. React, Python, PostgreSQL. Recife, PE. Disponível para freelas, estágios e parcerias.',

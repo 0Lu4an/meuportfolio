@@ -1,0 +1,354 @@
+@keyframes fu {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes su {
+  from { transform: translateY(110%); }
+  to   { transform: translateY(0); }
+}
+@keyframes blink {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(232,255,74,.5); }
+  50%       { box-shadow: 0 0 0 5px rgba(232,255,74,0); }
+}
+@keyframes scan {
+  0%   { left: -100%; }
+  100% { left:  100%; }
+}
+@keyframes menuIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: none; }
+}
+ 
+/* ── Nav ─────────────────────────────────── */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 300;
+  height: 64px;
+  padding: 0 clamp(24px, 4vw, 60px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background .4s, border-color .4s;
+}
+.navScrolled {
+  background: rgba(5,5,5,.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.logo {
+  font-size: 13px; font-weight: 700;
+  letter-spacing: .06em; color: var(--accent);
+  font-family: 'Space Grotesk', sans-serif;
+}
+.navLinks { display: flex; gap: 32px; list-style: none; }
+.navLink {
+  color: var(--ink3); text-decoration: none;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: .55rem; letter-spacing: .18em; text-transform: uppercase;
+  transition: color .25s; position: relative;
+}
+.navLink::after {
+  content: ''; position: absolute; bottom: -3px; left: 0;
+  width: 0; height: 1px; background: var(--accent);
+  transition: width .3s cubic-bezier(.22,1,.36,1);
+}
+.navLink:hover { color: var(--ink1); }
+.navLink:hover::after { width: 100%; }
+ 
+.navAvail {
+  display: flex; align-items: center; gap: 8px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: .5rem; letter-spacing: .16em; color: var(--ink3);
+}
+.navDot {
+  width: 5px; height: 5px;
+  background: var(--accent); border-radius: 50%;
+  animation: pulse 3s ease-in-out infinite;
+}
+ 
+/* Burger — hidden on desktop */
+.burger {
+  display: none;
+  flex-direction: column; justify-content: center; gap: 5px;
+  width: 32px; height: 32px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+}
+.burger span {
+  display: block; width: 22px; height: 1px;
+  background: var(--ink1);
+  transition: transform .3s, opacity .3s;
+  transform-origin: center;
+}
+.burgerOpen span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.burgerOpen span:nth-child(2) { opacity: 0; }
+.burgerOpen span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+ 
+/* ── Mobile overlay ──────────────────────── */
+.mobileMenu {
+  display: none;
+  position: fixed; inset: 0; z-index: 200;
+  background: var(--bg0, #050505);
+  flex-direction: column;
+  align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity .35s cubic-bezier(.22,1,.36,1);
+}
+.mobileMenuOpen { opacity: 1; pointer-events: all; }
+ 
+.mobileClose {
+  position: absolute; top: 20px; right: 24px;
+  background: none; border: none;
+  color: var(--ink3); font-size: 18px;
+  cursor: pointer; padding: 8px;
+  transition: color .2s;
+}
+.mobileClose:hover { color: var(--ink1); }
+ 
+.mobileNav {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 4px; width: 100%;
+}
+.mobileNavLink {
+  display: block; width: 100%; text-align: center;
+  padding: 18px 24px;
+  color: var(--ink1); text-decoration: none;
+  font-size: clamp(26px, 7vw, 40px);
+  font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  font-family: 'Space Grotesk', sans-serif;
+  transition: color .2s;
+  animation: menuIn .4s cubic-bezier(.22,1,.36,1) both;
+}
+.mobileNavLink:nth-child(1) { animation-delay: .05s; }
+.mobileNavLink:nth-child(2) { animation-delay: .10s; }
+.mobileNavLink:nth-child(3) { animation-delay: .15s; }
+.mobileNavLink:nth-child(4) { animation-delay: .20s; }
+.mobileNavLink:hover { color: var(--accent); }
+ 
+.mobileAvail {
+  position: absolute; bottom: 40px;
+  display: flex; align-items: center; gap: 8px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: .5rem; letter-spacing: .2em;
+  color: var(--ink3); text-transform: uppercase;
+}
+ 
+/* ── Hero ────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  z-index: 2;
+}
+ 
+/* ── LEFT (idêntico ao original + sem alteração) ── */
+.left {
+  padding: 10rem 4vw 5rem;
+  border-right: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+.left::after {
+  content: '';
+  position: absolute; bottom: -1px; right: -1px;
+  width: 60%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent));
+}
+ 
+.tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: .58rem; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 2.5rem;
+  display: flex; align-items: center; gap: .7rem;
+  opacity: 0; animation: fu .7s .5s forwards;
+}
+.tag::before {
+  content: ''; width: 2rem; height: 1px; background: var(--accent);
+}
+.name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(5rem, 11vw, 10.5rem);
+  line-height: .87; letter-spacing: .02em;
+}
+.name span {
+  display: block;
+  opacity: 0; animation: fu 1s .4s forwards;
+}
+.nameAccent { color: var(--accent); animation-delay: .55s !important; }
+ 
+.sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: .6rem; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--ink3);
+  margin-top: 1.5rem; margin-bottom: 2rem;
+  opacity: 0; animation: fu .8s 1s forwards;
+}
+.desc {
+  font-size: .9rem; color: var(--ink2);
+  line-height: 1.9; max-width: 380px;
+  opacity: 0; animation: fu .8s 1.1s forwards;
+}
+.bottom {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--border);
+  margin-top: 3rem;
+  flex-wrap: wrap; gap: 1rem;
+  opacity: 0; animation: fu .8s 1.3s forwards;
+}
+.role {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: .55rem; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--ink3);
+}
+.ctas { display: flex; gap: .8rem; flex-wrap: wrap; }
+ 
+/* ── RIGHT ───────────────────────────────── */
+.right {
+  padding: 0;           
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  overflow: visible;    
+}
+
+.photoWrap {
+  position: absolute;
+  inset: 0;
+  left: -28px; 
+  right: -1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  opacity: 0;
+  animation: fu .8s 1s forwards;
+}
+ 
+.photoFrame {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  border: none;
+  min-height: 0;
+}
+.photo {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 5%;
+  position: absolute; inset: 0;
+  filter: brightness(.92) contrast(1.04);
+}
+
+.pfT {
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 18%; z-index: 1; pointer-events: none;
+  background: linear-gradient(to bottom, var(--bg0, #050505) 0%, transparent 100%);
+}
+.pfL {
+  position: absolute; top: 0; bottom: 0; left: 0;
+  width: 48%; z-index: 1; pointer-events: none;
+  background: linear-gradient(
+    to right,
+    var(--bg0, #050505) 0%,
+    rgba(5,5,5,.7) 40%,
+    rgba(5,5,5,.2) 72%,
+    transparent 100%
+  );
+}
+.pfB {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 22%; z-index: 1; pointer-events: none;
+  background: linear-gradient(to top, var(--bg0, #050505) 0%, transparent 100%);
+}
+.pfGlow {
+  position: absolute; bottom: 0; left: 20%; right: 0;
+  height: 50%; z-index: 1; pointer-events: none;
+  background: radial-gradient(ellipse 70% 50% at 50% 100%,
+    rgba(232,255,74,.04) 0%, transparent 70%);
+}
+ 
+.photoLabel {
+  position: absolute; bottom: 1rem; left: 1rem; right: 1rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: .5rem; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--ink3); z-index: 2;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.photoBadge {
+  background: var(--accent); color: #080808;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: .48rem; letter-spacing: .14em;
+  text-transform: uppercase; padding: .2rem .5rem; font-weight: 500;
+}
+
+.stats {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--border);
+  flex-shrink: 0; position: relative; z-index: 2;
+}
+.stat {
+  padding: 1.3rem;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  position: relative; overflow: hidden;
+  transition: background .3s;
+}
+.stat::before {
+  content: ''; position: absolute; inset: 0;
+  background: var(--accent3); opacity: 0; transition: opacity .3s;
+}
+.stat:hover { background: var(--bg2); }
+.stat:hover::before { opacity: 1; }
+.stat:nth-child(even)       { border-right: none; }
+.stat:nth-last-child(-n+2)  { border-bottom: none; }
+ 
+.statN {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.4rem; line-height: 1;
+  color: var(--accent); position: relative; z-index: 1;
+}
+.statL {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: .48rem; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--ink3);
+  margin-top: .2rem; position: relative; z-index: 1;
+}
+ 
+/* ── Responsive ──────────────────────────── */
+@media (max-width: 960px) {
+  .hero { grid-template-columns: 1fr; }
+  .burger { display: flex; }
+  .navLinks, .navAvailText { display: none; }
+  .mobileMenu { display: flex; }
+ 
+  /* Right volta a ser relativo e tem altura fixa */
+  .right { position: relative; min-height: 60vw; overflow: hidden; }
+  .photoWrap { position: absolute; inset: 0; left: 0; right: 0; }
+  .pfL { width: 20%; background: linear-gradient(to right, var(--bg0,#050505) 0%, transparent 100%); }
+}
+ 
+@media (max-width: 768px) {
+  .left { padding: 7rem 5vw 3rem; }
+  .bottom { flex-direction: column; align-items: flex-start; }
+  .ctas { flex-direction: column; width: 100%; }
+  .ctas .btn { width: 100%; justify-content: center; }
+}
+ 
+@media (max-width: 480px) {
+  .name { font-size: clamp(4.5rem, 18vw, 7rem); }
+}
+ 

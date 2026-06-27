@@ -1,0 +1,49 @@
+@keyframes mq {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.ticker {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  padding: 0.6rem 0;
+  position: relative;
+  z-index: 2;
+  background: var(--bg1);
+}
+
+.track {
+  display: flex;
+  gap: 0;
+  width: max-content;
+  animation: mq 32s linear infinite;
+}
+
+.ticker:hover .track {
+  animation-play-state: paused;
+}
+
+.item {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  white-space: nowrap;
+  transition: color 0.3s;
+}
+
+.item:hover { color: var(--accent); }
+
+.dot {
+  width: 3px;
+  height: 3px;
+  background: var(--accent);
+  flex-shrink: 0;
+  border-radius: 50%;
+}

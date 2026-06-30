@@ -1,7 +1,7 @@
 import styles from './Contato.module.css'
 
 const links = [
-  { label: 'Email',     value: 'lunfelipe.dev@gmail.com',         href: 'mailto:lunfelipe.dev@gmail.com' },
+  { label: 'Email',     value: 'luanfelipe.dev@gmail.com',         href: 'mailto:luanfelipe.dev@gmail.com' },
   { label: 'LinkedIn',  value: 'luanfelipe-dev',                  href: 'https://www.linkedin.com/in/luanfelipe-dev/' },
   { label: 'GitHub',    value: '0Lu4an',                          href: 'https://github.com/0Lu4an' },
   { label: 'Telefone',  value: '+55 (81) 97901-8628',             href: 'tel:+5581979018628' },
@@ -19,7 +19,7 @@ export default function Contato() {
         </div>
 
         <p className={`${styles.sub} r d2`}>
-          Disponível para freelas, projetos e consultoria. Entrego resultado, não só código.
+          Não entrego só código. Entrego o que faz seu negócio andar.
         </p>
 
         <a

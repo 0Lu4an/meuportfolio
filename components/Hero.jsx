@@ -104,32 +104,6 @@ export default function Hero() {
  
   return (
     <>
-      {/* ── Nav ── */}
-      <nav className={`${styles.nav} ${scrolled ? styles.navScrolled : ''}`}>
-        <div className={styles.logo}>LF.</div>
- 
-        <ul className={styles.navLinks}>
-          {navLinks.map((l) => (
-            <li key={l.href}>
-              <a href={l.href} className={styles.navLink}
-                onClick={(e) => go(e, l.href)}>{l.label}</a>
-            </li>
-          ))}
-        </ul>
- 
-        <div className={styles.navAvail}>
-          <span className={styles.navDot} />
-          <span className={styles.navAvailText}>Disponível para projetos</span>
-        </div>
- 
-        <button
-          className={`${styles.burger} ${menuOpen ? styles.burgerOpen : ''}`}
-          onClick={() => setMenuOpen((v) => !v)}
-          aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
-        >
-          <span /><span /><span />
-        </button>
-      </nav>
  
       {/* ── Mobile overlay menu ── */}
       <div className={`${styles.mobileMenu} ${menuOpen ? styles.mobileMenuOpen : ''}`}>
